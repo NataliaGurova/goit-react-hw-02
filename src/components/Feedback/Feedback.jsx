@@ -1,5 +1,4 @@
 const Feedback = ({ good, neutral, bad, total, positive }) => {
-  console.log(good);
   return (
     <div>
       <p>Good: {good}</p>

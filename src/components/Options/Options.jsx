@@ -1,9 +1,8 @@
 
-const Options = ({ values, updateFeedback, totalFeedback, resetFeedback}) => {
-  // console.log(values);
+const Options = ({ updateFeedback, totalFeedback, resetFeedback }) => {
 
   return (
-    <div>
+    <div className="btn">
       <button onClick={() => updateFeedback("good")}>Good</button>
       <button onClick={() => updateFeedback("neutral")}>Neutral</button>
       <button onClick={() => updateFeedback("bad")}>Bad</button>
