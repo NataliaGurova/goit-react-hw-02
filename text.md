@@ -1,7 +1,6 @@
-// const [count, setCount] = useState(0)
-	// let clicks = 0;
 
-// const [username, setUsername] = useState("");
+
+  // const [username, setUsername] = useState("");
   // const [isOpen, setIsOpen] = useState(false);
 
   // const handleClick = () => {
@@ -13,33 +12,10 @@
   //   setIsOpen(!isOpen);
   // };
 
-
-
 {/* <button onClick={handleToggle}>{isOpen ? "Hide" : "Show"}</button>
       {isOpen && <p>Now you can see me!</p>} */}
 
-      {/* <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + Reactnnnnnn</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-
-        // const resetFeedback = () => {
+  // const resetFeedback = () => {
   //   setValues({
   //     good: 0,
   //     neutral: 0,
@@ -47,20 +23,27 @@
   //   })
   // }
 
-    // const STORAGE_KEY = "feedback";
+const onLeaveFeedback = (option) => {
+	setValues({
+		...values,
+		[option]: values[option] + 1
+	});
+};
 
-  // function saveToLS(key, value) {
-  // const zip = JSON.stringify(value);
-  // localStorage.setItem(key, zip);
-  // }
-  // saveToLS(STORAGE_KEY, values);
+{totalFeedback > 0 ? <Feedback/> : <Notification/>}
 
-  // function loadFromLS(key) {
-  // const zip = localStorage.getItem(key);
-  // return JSON.parse(zip);
-  // }
-  // function init() {
-  //   const values = loadFromLS(STORAGE_KEY) || {};
-  //   console.log(values);
-  // }
-  // init()
+const [clicks, setClicks] = useState(() => {
+    const savedClicks = JSON.parse(localStorage.getItem("feedback"));
+    if (savedClicks === null) {
+      return {
+        good: 0,
+        neutral: 0,
+        bad: 0
+      };
+    }
+    return savedClicks;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(clicks));
+  }, [clicks]);

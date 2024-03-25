@@ -34,9 +34,13 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
 }
 
 button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   border-radius: 8px;
   border: 1px solid rgb(49, 49, 49);
   padding: 10px 20px;
@@ -49,6 +53,7 @@ button {
 }
 button:hover {
   border-color: #646cff;
+  background-color: aqua;
 }
 button:focus,
 button:focus-visible {

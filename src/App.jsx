@@ -5,7 +5,6 @@ import Options from "./components/Options/Options"
 import Feedback from "./components/Feedback/Feedback"
 import Notification from "./components/Notification/Notification"
 
-
 const App = () => {
   const [clicks, setClicks] = useState(() => {
     const savedClicks = JSON.parse(localStorage.getItem("feedback"));
@@ -24,27 +23,27 @@ const App = () => {
   }, [clicks]);
 
   const updateFeedback = (feedbackType) => {
+    if (feedbackType === "reset") {
+      setClicks({
+        good: 0,
+        neutral: 0,
+        bad: 0
+      });
+    } else { 
     setClicks({
       ...clicks,
       [feedbackType]: clicks[feedbackType] + 1
     });
+  }
   };
 
   const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
   const positive = Math.round((clicks.good / totalFeedback) * 100);
 
-  const resetFeedback = () => {
-    setClicks({
-      good: 0,
-      neutral: 0,
-      bad: 0
-    });
-  };
-
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} resetFeedback={resetFeedback} />
+      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
       {totalFeedback > 0 ? (
         <Feedback good={clicks.good} neutral={clicks.neutral} bad={clicks.bad} total={totalFeedback} positive={positive} />
       ) : (
